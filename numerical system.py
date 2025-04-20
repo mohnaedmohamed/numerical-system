@@ -18,7 +18,6 @@ def decimal_binary(z):
         else:
                 print('1',end="")
         z=d
-        d=d//2
 #from binary to decimal 
 def binary_decimal(k):
  l=[]     
@@ -127,6 +126,7 @@ def hexadecimal_binary(k):
          z=hexadecimal_decimal(k)
          h=decimal_binary(z)
          return h
+choice=0
 def main():
     print("welcome to the number conversion program")
     print("Choose the conversion you want to perform:")
@@ -183,4 +183,10 @@ def main():
     if choice > 12:
             print("Invalid choice!")
             return None
-main()
+
+while choice <= 12:
+    main()  
+    print("Do you want to perform another conversion? (yes/no)")
+    again = input().lower()
+    if again != 'yes':
+        break

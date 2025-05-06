@@ -9,15 +9,14 @@ def octal_decimal(k):
                 x=sum(result)
  return x 
 #from decimal to binary
-def decimal_binary(z):
-    while z>0:
-        m=z%2
-        d=z//2
-        if m==0:
-                print('0',end="")
-        else:
-                print('1',end="")
-        z=d
+def decimal_binary(k):
+    result = []
+    while k > 0:
+        result.append(str(k % 2))
+        k = k // 2
+    result.reverse()
+    binary = ''.join(result)
+    return binary
 #from binary to decimal 
 def binary_decimal(k):
  l=[]     
@@ -45,8 +44,6 @@ def decimal_octal(k):
         k=k//8  
     result.reverse()
     result = ''.join(map(str, result))
-    print(result)
-    
     return result
 #from binary to octal
 def binary_octal(k):                      
@@ -76,8 +73,6 @@ def decimal_hexadecimal(k):
             result[i]='F'
 
     result = ''.join(map(str, result))
-    print(result)
-    
     return result
  #from binary to hexadecimal
 def binary_hexadecimal(k):                      
@@ -90,33 +85,25 @@ def octal_hexadecimal(k):
          h=decimal_hexadecimal(z)
          return h
 def hexadecimal_decimal(k):
-    l=[]     
-    l.append(k)
-    result=list(map(str,l[0])) 
-    result.reverse()
-    for i in range(len(result)):
-                if result[i]=='A':
-                    result[i]=10**i  
-                    x=sum(result)
-                elif result[i]=='B':
-                    result[i]=11**i  
-                    x=sum(result) 
-                elif result[i]=='C':
-                    result[i]=12**i  
-                    x=sum(result) 
-                elif result[i]=='D':
-                    result[i]=13**i  
-                    x=sum(result) 
-                elif result[i]=='E':
-                    result[i]=14**i  
-                    x=sum(result) 
-                elif result[i]=='F':
-                    result[i]=15**i  
-                    x=sum(result) 
-                else:
-                        result[i]=int(result[i])*16**i
-                        x=sum(result)
-    
+    k = k.upper()[::-1]
+    result = []
+    for i in range(len(k)):
+        if k[i] == 'A':
+            val = 10
+        elif k[i] == 'B':
+            val = 11
+        elif k[i] == 'C':
+            val = 12
+        elif k[i] == 'D':
+            val = 13
+        elif k[i] == 'E':
+            val = 14
+        elif k[i] == 'F':
+            val = 15
+        else:
+            val = int(k[i])
+        result.append(val * (16 ** i))
+    x = sum(result)
     return x
 def hexadecimal_octal(k):
     z=hexadecimal_decimal(k)
@@ -146,47 +133,61 @@ def main():
     choice = int(input("Enter your choice: "))
     if choice == 1:
           k=int(input("Enter a decimal number: "))
-          return decimal_octal(k)
+          q=decimal_octal(k)
+          print(q)
     if choice == 2:
           k=int(input("Enter a decimal number: "))
-          return decimal_binary(k)
+          q=decimal_binary(k) 
+          print(q)
+
     if choice == 3:
           k=int(input("Enter a decimal number: "))
-          return decimal_hexadecimal(k)
+          q=decimal_hexadecimal(k)
+          print(q)
+
     if choice == 4:
           k=int(input("Enter a octal number: "))
-          return octal_decimal(k)   
+          q=octal_decimal(k) 
+          print(q) 
     if choice == 5:
           k=int(input("Enter a octal number: "))
-          return octal_binary(k)
+          q=octal_binary(k)
+          print(q)
     if choice == 6:
           k=int(input("Enter a octal number: "))
-          return octal_hexadecimal(k)
+          q=octal_hexadecimal(k)
+          print(q)
     if choice == 7:
           k=int(input("Enter a binary number: "))
-          return binary_decimal(k)
+          q=binary_decimal(k)
+          print(q)
     if choice == 8:
           k=int(input("Enter a binary number: "))
-          return binary_octal(k)
+          q=binary_octal(k)
+          print(q)    
     if choice == 9:     
           k=int(input("Enter a binary number: "))
-          return binary_hexadecimal(k)
+          q=binary_hexadecimal(k)
+          print(q)
     if choice == 10:
           k=input("Enter a hexadecimal number: ")
-          return hexadecimal_decimal(k)
+          q=hexadecimal_decimal(k)
+          print(q)
     if choice == 11:
           k=input("Enter a hexadecimal number: ")
-          return hexadecimal_octal(k)
+          q=hexadecimal_octal(k)
+          print(q)
     if choice == 12:
             k=input("Enter a hexadecimal number: ")
-            return hexadecimal_binary(k)
+            q=hexadecimal_binary(k)
+            print(q)
     if choice > 12:
             print("Invalid choice!")
             return None
 
 while choice <= 12:
     main()  
-    print("Do you want to perform another conversion? (yes/no)")
+    print("\nDo you want to perform another conversion? (yes/no)")
     again = input().lower()
     if again != 'yes':
         break
